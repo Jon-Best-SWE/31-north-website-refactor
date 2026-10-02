@@ -40,7 +40,7 @@ No build system or framework is required.
 
 ## Key Technical Improvements
 
-### CSS cleanup
+### CSS Cleanup
 
 The shared stylesheet was reduced from approximately **437 lines to 123 lines** by removing unused generated framework utilities and consolidating the rules actually required by the restored pages.
 
@@ -116,3 +116,68 @@ Examples include:
     ├── images/
     ├── svg/
     └── vendor/
+```
+
+## Recovered Pages
+
+- **Home** — animated header and interactive compass navigation
+- **Locate** — location information, archived map, business details, and hours
+- **Services** — service categories, imagery, scrolling sections, and animation
+- **About Us** — staff overview
+- **Ashley** — individual stylist profile
+- **Tiffany** — individual stylist profile
+- **Whitney** — individual stylist profile
+
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Responsive Web Design
+- SVG
+- AOS / GSAP animation
+- Git / GitHub
+
+### Legacy Technologies Removed from the Runtime
+
+- Joomla
+- Gantry
+- Helium
+- jQuery
+- PHP/database dependency
+
+## Run Locally
+
+No build step or package installation is required.
+
+Serve the repository root using any static web server. For example, with the VS Code **Live Server** extension, open `index.html` and select **Open with Live Server**.
+
+Alternatively, if Python is installed:
+
+```sh
+python -m http.server 8000
+```
+
+Then visit `http://localhost:8000/`.
+
+Opening the HTML files directly may work for most pages, but a local server is recommended because the archived map is loaded in an iframe.
+
+## GitHub Pages
+
+The project uses relative asset paths and can be hosted as a static website using GitHub Pages.
+
+## Project Background
+
+This project represents both the preservation of an earlier production website and a later modernization of its frontend architecture.
+
+The visual design and custom frontend functionality originate from the original production implementation. The current repository demonstrates the process of recovering that implementation from archived production output, identifying the code actually required by the site, removing obsolete CMS/framework dependencies, and reorganizing the result into a substantially smaller and more maintainable standalone frontend.
+
+The objective was deliberately **not** to redesign the site with modern frameworks. Instead, the project demonstrates legacy-code analysis, dependency removal, refactoring, responsive frontend development, and preservation of existing production behavior.
+
+## Third-Party Assets
+
+Business branding, photography, and other media remain the property of their respective owners and are included here solely as part of the historical portfolio restoration.
+
+The archived Google Maps resources under `assets/vendor/` are third-party resources retained to preserve the recovered location page.
+
+AOS and GSAP/TweenMax code is retained for animation behavior and is not presented as original authorship.
