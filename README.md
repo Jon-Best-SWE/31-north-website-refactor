@@ -1,65 +1,118 @@
-# 31 North Salon & Barbershop — Legacy Frontend Restoration
+# 31 North Salon & Barbershop — Legacy Website Modernization
 
-This repository is a restored, static portfolio version of the production 31 North Salon & Barbershop website originally developed by Jon Best. The original live site is no longer online. It ran on Joomla with the Gantry/Helium template system; this project uses the rendered production pages and downloaded assets from a 2023 browser archive to preserve the recoverable frontend without requiring Joomla, PHP, or a database.
+A frontend modernization project that converts a legacy Joomla/Gantry website into a maintainable static application using HTML, CSS, and vanilla JavaScript while preserving the original visual design, responsive behavior, animations, and custom interactive components.
 
-This is an archival restoration, not a redesign. The goal is to make the historical site reviewable while keeping Jon's original visual direction, content, responsive behavior, and custom frontend implementation as intact as the backup permits.
+The original 31 North Salon & Barbershop website was developed by Jon Best and ran in production using Joomla with the Gantry/Helium template system. After the original site went offline, its rendered production pages and archived assets were recovered and refactored into this standalone version.
 
-## Frontend structure
+Rather than redesigning the site, the goal was to preserve the original frontend while removing its dependency on the legacy CMS and generated framework code.
 
-Each page now contains markup only. Styling and behavior are organized consistently:
+## The Challenge
 
-- `assets/css/site.css` — shared structural CSS and the single canonical Roboto import
-- `assets/css/<page>.css` — only selectors used by that page, including responsive and interactive states
-- `assets/js/site.js` — shared vanilla-JavaScript navigation and smooth-scroll behavior
-- `assets/js/animations.js` — the retained GSAP/AOS animation libraries used by the About/profile pages
-- `assets/js/<page>.js` — page-only interaction code where it is genuinely needed
+The recoverable version of the website consisted of rendered production output from a Joomla/Gantry installation rather than the original CMS environment.
 
-There are no inline `<style>` or `<script>` blocks. jQuery and the generated Joomla/Gantry/Helium shell are no longer required.
+That introduced several challenges:
 
-## Recovered pages
+- Joomla, Gantry, Helium, PHP, and the original database were unavailable
+- Production markup contained generated CMS and framework structure
+- Shared and page-specific CSS were mixed with unused framework utilities
+- Legacy JavaScript dependencies and duplicated behavior remained in the export
+- Responsive behavior and custom animations needed to remain visually consistent
+- The custom compass navigation needed to retain its original directional behavior
+- Archived third-party resources had to be separated from custom application code
 
-- `index.html` — Home and interactive compass navigation
-- `locate.html` — location, archived map, address, and hours
-- `services.html` — service categories, scrolling sections, imagery, and animation
-- `about.html` — staff overview
-- `about-ashley.html` — Ashley profile
-- `about-tiffany.html` — Tiffany profile
-- `about-whitney.html` — Whitney profile
+The modernization therefore focused on extracting the actual frontend implementation from the legacy platform without changing the character of the original site.
 
-## Custom frontend work demonstrated
+## Modernization Approach
 
-- Responsive desktop and mobile navigation
-- Booking, phone, Facebook, and shop controls
-- Animated responsive header/hero composition
-- Layered compass, arrow rotation, and directional navigation logic
-- Mobile menu transformation and responsive layout changes
-- Page-specific salon/service/profile layouts
-- Scroll and parallax presentation on the Services page
-- SVG and image composition, hover states, transitions, and custom styling
-- Conservative modernization of a real Joomla/Gantry-era frontend export
+The restored site was reorganized into a conventional static frontend architecture:
 
-## Run locally
+- Shared layout and styling were consolidated into `assets/css/site.css`
+- Page-specific styles were separated into dedicated stylesheets
+- Shared interaction behavior was moved into `assets/js/site.js`
+- Page-specific JavaScript was separated by page
+- Inline `<style>` and `<script>` blocks were eliminated
+- jQuery dependencies were removed
+- Unused Joomla/Gantry/Helium markup and CSS were removed
+- Legacy navigation behavior was rewritten in vanilla JavaScript
+- Responsive and accessibility behavior was preserved and improved
 
-No build step or package installation is required. Serve the repository root with any static web server, then open `index.html`.
+No build system or framework is required.
 
-For example:
+## Key Technical Improvements
 
-```sh
-python -m http.server 8000
-```
+### CSS cleanup
 
-Then visit `http://localhost:8000/`.
+The shared stylesheet was reduced from approximately **437 lines to 123 lines** by removing unused generated framework utilities and consolidating the rules actually required by the restored pages.
 
-Opening the HTML files directly may work for most pages, but a local server is recommended because the archived map is loaded in an iframe.
+Page-specific styles remain separate so that specialized layouts and responsive behavior do not unnecessarily expand the global stylesheet.
 
-## GitHub Pages
+### Vanilla JavaScript
 
-The project uses relative URLs and is compatible with GitHub Pages. Publish the repository root from the default branch, or copy this folder into the configured Pages source directory.
+Legacy and repetitive interaction logic was replaced with smaller, purpose-specific vanilla JavaScript.
 
-## Authorship and third-party code
+Shared functionality includes:
 
-The custom page markup, inline interaction logic, visual composition, and page-specific styles/scripts represent the historical site implementation recovered from the production output. They are not newly generated replacements.
+- Responsive mobile navigation
+- Keyboard-accessible menu controls
+- ARIA state management
+- Smooth scrolling
+- Shared navigation behavior
 
-The remaining files under `assets/vendor/` belong to the archived Google Maps snapshot. AOS and TweenMax are retained once in `assets/js/animations.js` because they drive visible effects. jQuery, unused Gantry/Helium rules, obsolete off-canvas/menu code, duplicate libraries, and superseded source fragments were removed. These dependencies are not presented as Jon Best's authorship.
+jQuery is no longer required.
 
-See [CLEANUP_REPORT.md](CLEANUP_REPORT.md) for the second-pass audit and [RESTORATION_NOTES.md](RESTORATION_NOTES.md) for the original restoration history.
+### Compass Navigation
+
+The home page contains a custom interactive compass that serves as the site's primary visual navigation component.
+
+Directional elements are mapped to compass rotations through JavaScript rather than maintaining separate repetitive event handlers.
+
+The compass preserves the original directional states and animated two-second rotation while keeping the implementation considerably easier to maintain.
+
+### Responsive Design
+
+The original desktop and mobile presentation was preserved while removing the framework that previously supplied much of the surrounding layout infrastructure.
+
+Responsive behavior includes:
+
+- Desktop and mobile navigation states
+- Responsive hero/header compositions
+- Adaptive page layouts
+- Mobile staff and service presentations
+- Responsive compass navigation
+- Page-specific breakpoint behavior
+
+### Accessibility
+
+Modernization work also improved interaction semantics without substantially changing the original presentation.
+
+Examples include:
+
+- Keyboard-operable mobile navigation
+- `aria-expanded` state management
+- Accessible navigation labels
+- Image alternative text
+- Keyboard-accessible scroll controls
+
+## Project Structure
+
+```text
+31-north-website-refactor/
+├── index.html
+├── locate.html
+├── services.html
+├── about.html
+├── about-ashley.html
+├── about-tiffany.html
+├── about-whitney.html
+│
+└── assets/
+    ├── css/
+    │   ├── site.css
+    │   └── [page-specific styles]
+    ├── js/
+    │   ├── site.js
+    │   ├── animations.js
+    │   └── [page-specific scripts]
+    ├── images/
+    ├── svg/
+    └── vendor/
