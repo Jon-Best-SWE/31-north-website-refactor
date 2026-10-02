@@ -1,0 +1,22 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# VS Code / IDE settings
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary/backup files
+*.tmp
+*.bak
+*~
+
+# Internal project documentation
+CLEANUP_REPORT.md
+RESTORATION_NOTES.md
